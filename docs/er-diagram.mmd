@@ -1,0 +1,59 @@
+erDiagram
+    users ||--o{ user_roles : has
+    roles ||--o{ user_roles : grants
+    users ||--o{ addresses : owns
+    users ||--o| carts : has
+    carts ||--o{ cart_items : contains
+    products ||--o{ cart_items : in
+    categories ||--o{ products : groups
+    products ||--o{ product_images : shows
+    products ||--|| inventory : stocked_as
+    products ||--o{ stock_movements : tracked_by
+    users ||--o{ orders : places
+    orders ||--o{ order_items : snapshots
+    products ||--o{ order_items : sold_as
+    orders ||--o{ payments : paid_by
+    users ||--o{ reviews : writes
+    products ||--o{ reviews : receives
+    users ||--o| wishlists : has
+    wishlists ||--o{ wishlist_items : holds
+    products ||--o{ wishlist_items : saved_in
+    users ||--o{ audit_logs : acts_in
+    users {
+        bigint id PK
+        varchar email UK
+        varchar password_hash
+        varchar status
+        int failed_attempts
+    }
+    products {
+        bigint id PK
+        varchar sku UK
+        numeric price
+        bool active
+    }
+    inventory {
+        bigint product_id PK
+        int quantity "never below 0"
+        int low_stock_threshold
+    }
+    orders {
+        bigint id PK
+        varchar order_number UK
+        varchar status
+        numeric total
+        varchar idempotency_key "unique per user"
+    }
+    order_items {
+        bigint id PK
+        varchar sku "snapshot"
+        varchar name "snapshot"
+        numeric unit_price "snapshot"
+        int quantity
+    }
+    payments {
+        bigint id PK
+        varchar reference
+        varchar status
+        bool simulated
+    }

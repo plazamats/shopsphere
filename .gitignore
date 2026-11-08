@@ -1,0 +1,9 @@
+target/
+*.class
+*.log
+.idea/
+nbproject/private/
+.vscode/
+config/server.local.properties
+*.local.properties
+.env

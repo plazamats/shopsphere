@@ -1,0 +1,14 @@
+# Copy this file to config/server.local.properties and fill in your values.
+# The real file is ignored by Git. Environment variables (SHOPSPHERE_*) override these values.
+db.url=jdbc:postgresql://localhost:5432/shopsphere
+db.user=shopsphere
+db.password=CHANGE_ME
+server.port=5555
+server.maxClients=50
+session.idleMinutes=30
+security.pbkdf2Iterations=210000
+security.maxFailedLogins=5
+security.lockMinutes=15
+# Created once, on first start, when no SUPER_ADMIN exists yet
+bootstrap.superAdminEmail=owner@example.com
+bootstrap.superAdminPassword=CHANGE_ME_Str0ng!
